@@ -31,7 +31,8 @@ public class AsyncTaskConfig implements AsyncConfigurer {
         taskExecutor.setCorePoolSize(5);// 最小线程数
         taskExecutor.setMaxPoolSize(10);// 最大线程数
         taskExecutor.setQueueCapacity(25);// 等待队列
-
+        taskExecutor.setThreadNamePrefix("task_");// 设置线程的前缀名
+        taskExecutor.setKeepAliveSeconds(60);// 设置线程的生存周期
         taskExecutor.initialize();
 
         return taskExecutor;

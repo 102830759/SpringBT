@@ -24,7 +24,7 @@ public class TestayscApplicationTests {
         List<Future<String>> lstFuture = new ArrayList<Future<String>>();// 存放所有的线程，用于获取结果
 
         // 创建100个线程
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 0; i <= 100; i++) {
             while (true) {
                 try {
                     // 线程池超过最大线程数时，会抛出TaskRejectedException，则等待1s，直到不抛出异常为止
@@ -40,8 +40,13 @@ public class TestayscApplicationTests {
         }
 
         // 获取值。get是阻塞式，等待当前线程完成才返回值
-        for (Future<String> future : lstFuture) {
-            System.out.println(future.get());
+        for (int i = 0; i < lstFuture.size(); i++) {
+            try {
+                System.out.println(lstFuture.get(i).get());
+            } catch (Exception e) {
+                System.out.println("任务：" + i + "执行失败！！！");
+            }
+
         }
 
     }

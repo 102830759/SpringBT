@@ -35,9 +35,14 @@ public class AsyncTaskService {
     public Future<String> asyncInvokeReturnFuture(int i) throws InterruptedException {
         System.out.println("input is " + i);
 //        Thread.sleep(1000 * random.nextInt(i));
+        Future<String> future;
 
-        Future<String> future = new AsyncResult<String>("success:" + i);// Future接收返回值，这里是String类型，可以指明其他类型
-
+        future = new AsyncResult<String>("线程：" + Thread.currentThread().getName() + "，执行了任务编号：" + i + "任务结果" + doSoming(i));// Future接收返回值，这里是String类型，可以指明其他类型
         return future;
+
+    }
+
+    public int doSoming(int i) {
+        return i / i;
     }
 }
