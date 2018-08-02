@@ -470,7 +470,7 @@ public class TestayscApplicationTests {
                 , "http://www.tipschina.gov.cn"
                 , "http://www.cneb.net"
         };
-        // 根据任务的长度创建适当的线程任务
+        // 根据任务的数量创建适当的线程任务
         for (int i = 0; i <= urls.length; i++) {
             while (true) {
                 try {
