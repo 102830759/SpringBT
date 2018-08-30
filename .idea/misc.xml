@@ -8,7 +8,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/testaysc/pom.xml" />
+        <option value="$PROJECT_DIR$/features/pom.xml" />
       </list>
     </option>
   </component>
