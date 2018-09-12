@@ -9,6 +9,7 @@
         <module name="features" />
         <module name="point" />
         <module name="SpringBT" />
+        <module name="tool" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
