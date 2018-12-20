@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="example">
+			<input v-model="a" /><br />
+			<!-- 通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。
+		但请留心这会影响到该节点上的其它数据绑定 -->
+			<span>{{msg}}</span>
+			<span v-if="flag">{{flag ?'niaho':'buhao'}}</span>
+			<button v-on:click="doSomething">doSomething</button>
+			<!-- v-on:click   缩写语法 -->
+			<button @click="doSomething">doSomething</button>
+		</div>
+	</body>
+
+	<script>
+		var data = {
+			a: 1
+		}
+		data.msg = '张三'
+		data.flag = true
+		data.doSomething = function() {
+			console.log('做些操作')
+		}
+		var vm = new Vue({
+			el: '#example',
+			data: data
+		})
+		data.doSomething = function() { // 重新定义方法doSomething
+			console.log('做些操作22')
+		}
+		vm.$data === data // => true
+		vm.$el === document.getElementById('example') // => true
+
+		// $watch 是一个实例方法
+		vm.$watch('a', function(newValue, oldValue) {
+			// 这个回调将在 `vm.a` 改变后调用
+			alert(newValue)
+		})
+	</script>
+</html>
