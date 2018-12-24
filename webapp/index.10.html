@@ -16,6 +16,22 @@
 				<input v-model="question">
 			</p>
 			<p>{{ answer }}</p>
+			<!-- key属性 -->
+			<template v-if="loginType === 'username'">
+				<label>Username</label>
+				<input placeholder="Enter your username" key="username-input">
+			</template>
+			<template v-else>
+				<label>Email</label>
+				<input placeholder="Enter your email address" key="email-input">
+			</template>
+			<button v-on:click="changeEmail">Toggle login type</button>
+			<ul>
+				<li v-for="item in items">{{ item.message }}</li>
+			</ul>
+			<div v-for="(value, key,index) in object">
+				{{index}}.{{ key }}: {{ value }}
+			</div>
 		</div>
 	</body>
 
@@ -24,7 +40,15 @@
 			el: '#watch-example',
 			data: {
 				question: '',
-				answer: 'I cannot give you an answer until you ask a question!'
+				answer: 'I cannot give you an answer until you ask a question!',
+				loginType: 'username',
+				items: [{
+					message: 'Foo'
+
+				}, {
+					message: 'Bar'
+				}],
+				object:null
 			},
 			watch: {
 				// 如果 `question` 发生改变，这个函数就会运行
@@ -56,8 +80,19 @@
 						.catch(function(error) {
 							vm.answer = 'Error! Could not reach the API. ' + error
 						})
+				},
+				changeEmail: function() {
+					var vm = this
+					vm.loginType = (vm.loginType === 'username' ? 'email' : 'username');
 				}
 			}
 		})
+		
+		var vm = watchExampleVM.$data
+		vm.object = {
+			firstName: 'John',
+			lastName: 'Doe',
+			age: 30
+		}
 	</script>
 </html>
