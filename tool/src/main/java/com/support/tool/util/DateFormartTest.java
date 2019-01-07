@@ -13,12 +13,17 @@ import java.util.Date;
 
 public class DateFormartTest {
     public static void main(String args[]) {
+        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+        String s="2018-12-13 23";
+        String formatss = yyyyMMdd.format(s);
+        System.out.print(formatss);
 
         //解析日期
-        String dateStr = "2016年10月25日";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+        String dateStr = "2016年10月25日 12时05分33秒";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH时mm分ss秒");
         LocalDate date = LocalDate.parse(dateStr, formatter);
-
+        System.out.println(date);
         //日期转换为字符串
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年MM月dd日 hh:mm:ss a");
@@ -40,6 +45,5 @@ public class DateFormartTest {
     public static String dateFormat(Date date) {
         return threadLocal.get().format(date);
     }
-
 
 }

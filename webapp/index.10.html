@@ -1,98 +1,106 @@
 <!DOCTYPE html>
 <html>
-	<!-- 开发环境版本，包含了有帮助的命令行警告 -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<div id="watch-example">
-			<p>
-				Ask a yes/no question:
-				<input v-model="question">
-			</p>
-			<p>{{ answer }}</p>
-			<!-- key属性 -->
-			<template v-if="loginType === 'username'">
-				<label>Username</label>
-				<input placeholder="Enter your username" key="username-input">
-			</template>
-			<template v-else>
-				<label>Email</label>
-				<input placeholder="Enter your email address" key="email-input">
-			</template>
-			<button v-on:click="changeEmail">Toggle login type</button>
-			<ul>
-				<li v-for="item in items">{{ item.message }}</li>
-			</ul>
-			<div v-for="(value, key,index) in object">
-				{{index}}.{{ key }}: {{ value }}
-			</div>
-		</div>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="watch-example">
+      <p>
+        Ask a yes/no question:
+        <input v-model="question">
+      </p>
+      <p>{{ answer }}</p>
+      <!-- key属性 -->
+      <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+      </template>
+      <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+      </template>
+      <button v-on:click="changeEmail">Toggle login type</button>
+      <ul>
+        <li v-for="item in items">{{ item.message }}</li>
+      </ul>
+      <div v-for="(value, key,index) in object">
+        {{index}}.{{ key }}: {{ value }}
+      </div>
+    </div>
+  </body>
 
-	<script>
-		var watchExampleVM = new Vue({
-			el: '#watch-example',
-			data: {
-				question: '',
-				answer: 'I cannot give you an answer until you ask a question!',
-				loginType: 'username',
-				items: [{
-					message: 'Foo'
+  <script>
+    var watchExampleVM = new Vue({
+      el: '#watch-example',
+      data: {
+        question: '',
+        answer: 'I cannot give you an answer until you ask a question!',
+        loginType: 'username',
+        items: [{
+          message: 'Foo'
 
-				}, {
-					message: 'Bar'
-				}],
-				object:null
-			},
-			watch: {
-				// 如果 `question` 发生改变，这个函数就会运行
-				question: function(newQuestion, oldQuestion) {
-					this.answer = 'Waiting for you to stop typing...'
-					this.debouncedGetAnswer()
-				}
-			},
-			created: function() {
-				// `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
-				// 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
-				// AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
-				// `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
-				// 请参考：https://lodash.com/docs#debounce
-				this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
-			},
-			methods: {
-				getAnswer: function() {
-					if (this.question.indexOf('?') === -1) {
-						this.answer = 'Questions usually contain a question mark. ;-)'
-						return
-					}
-					this.answer = 'Thinking...'
-					var vm = this
-					axios.get('https://yesno.wtf/api')
-						.then(function(response) {
-							vm.answer = _.capitalize(response.data.answer)
-						})
-						.catch(function(error) {
-							vm.answer = 'Error! Could not reach the API. ' + error
-						})
-				},
-				changeEmail: function() {
-					var vm = this
-					vm.loginType = (vm.loginType === 'username' ? 'email' : 'username');
-				}
-			}
-		})
-		
-		var vm = watchExampleVM.$data
-		vm.object = {
-			firstName: 'John',
-			lastName: 'Doe',
-			age: 30
-		}
-	</script>
+        }, {
+          message: 'Bar'
+        }],
+        object: null
+      },
+      watch: {
+        // 如果 `question` 发生改变，这个函数就会运行
+        question: function(newQuestion, oldQuestion) {
+          this.answer = 'Waiting for you to stop typing...'
+          this.debouncedGetAnswer()
+        }
+      },
+      created: function() {
+        // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
+        // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
+        // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+        // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
+        // 请参考：https://lodash.com/docs#debounce
+        this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+      },
+      methods: {
+        getAnswer: function() {
+          if (this.question.indexOf('?') === -1) {
+            this.answer = 'Questions usually contain a question mark. ;-)'
+            return
+          }
+          this.answer = 'Thinking...'
+          var vm = this
+          axios.get('https://yesno.wtf/api')
+            .then(function(response) {
+              vm.answer = _.capitalize(response.data.answer)
+            })
+            .catch(function(error) {
+              vm.answer = 'Error! Could not reach the API. ' + error
+            })
+        },
+        changeEmail: function() {
+          var vm = this
+          vm.loginType = (vm.loginType === 'username' ? 'email' : 'username');
+        }
+      }
+    })
+
+    var vm = watchExampleVM.$data
+    vm.object = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+    vm.items.push({
+      message: 'Baz'
+    })
+    watchExampleVM.$set(vm.object, 'newObject', true) // 追加单个
+    vm.object = Object.assign({}, vm.object, { // 追加多个属性
+      gao: '176cm',
+      favoriteColor: 'Vue Green'
+    })
+  </script>
 </html>
