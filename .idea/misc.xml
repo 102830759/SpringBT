@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/features/pom.xml" />
         <option value="$PROJECT_DIR$/point/pom.xml" />
         <option value="$PROJECT_DIR$/tool/pom.xml" />
+        <option value="$PROJECT_DIR$/zxing/pom.xml" />
       </list>
     </option>
   </component>
