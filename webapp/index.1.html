@@ -9,6 +9,7 @@
   <body>
     <div id="app-3">
       <p v-if="seen">现在你看到我了</p>
+      <button v-on:click="sendAjax">逆转消息</button>
     </div>
   </body>
   <script>
@@ -16,6 +17,26 @@
       el: '#app-3',
       data: {
         seen: true
+      },
+      methods: {
+        sendAjax: function() {
+          axios.post('server.php', this.user, { //方式2通过transformRequest方法发送数据，本质还是将数据拼接成字符串
+              transformRequest: [
+                function(data) {
+                  let params = '';
+                  for (let index in data) {
+                    params += index + '=' + data[index] + '&';
+                  }
+                  return params;
+                }
+              ]
+            })
+            .then(resp => {
+              console.log(resp.data);
+            }).catch(err => {
+              console.log('请求失败：' + err.status + ',' + err.statusText);
+            });
+        }
       }
     })
   </script>
