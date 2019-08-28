@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
         <module name="SpringBT" />
+        <module name="hyzx-restful" />
         <module name="features" />
         <module name="hyzx-easypoi" />
         <module name="point" />
@@ -24,6 +25,7 @@
       <module name="demo" options="-parameters" />
       <module name="features" options="-parameters" />
       <module name="hyzx-easypoi" options="-parameters" />
+      <module name="hyzx-restful" options="-parameters" />
       <module name="point" options="-parameters" />
       <module name="tool" options="-parameters" />
       <module name="zxing" options="-parameters" />
