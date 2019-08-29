@@ -6,14 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demo" />
+        <module name="zxing" />
         <module name="SpringBT" />
-        <module name="hyzx-restful" />
+        <module name="demo" />
         <module name="features" />
         <module name="hyzx-easypoi" />
         <module name="point" />
         <module name="tool" />
-        <module name="zxing" />
+        <module name="hyzx-restful" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

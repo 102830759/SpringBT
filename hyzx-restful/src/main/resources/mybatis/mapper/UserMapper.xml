@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzx.restful.mapper.UserMapper">
+
+    <sql id="column">
+        id,username,password,cellphone,mail,department_id,real_name,remark,status
+    </sql>
+
+    <select id="pageQuery" parameterType="com.hyzx.restful.dto.UserPageDto" resultType="com.hyzx.restful.entity.User">
+        select <include refid="column"></include> from t_sec_user
+    </select>
+
+
+</mapper>
