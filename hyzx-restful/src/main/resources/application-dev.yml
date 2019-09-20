@@ -2,37 +2,37 @@ spring:
   datasource:
     druid:
       driver-class-name: org.postgresql.Driver
-      url: jdbc:postgresql://127.0.0.1:5432/smartdb
+      url: jdbc:postgresql://192.168.3.129:5432/smartdb
       username: smartdb
-      password: smartdb
+      password: ztjz@2018
 
 #mybatis
 mybatis-plus:
   # xml
   mapper-locations: classpath:mybatis/mapper/*.xml
-  # ÊµÌåÉ¨Ãè£¬¶à¸öpackageÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô
+  # Êµï¿½ï¿½É¨ï¿½è£¬ï¿½ï¿½ï¿½packageï¿½Ã¶ï¿½ï¿½Å»ï¿½ï¿½ß·ÖºÅ·Ö¸ï¿½
   type-aliases-package: com.hyzx.restful.entity
-  # É¨ÃèÃ¶¾ÙÀà # Ö§³ÖÍ³Åä·û * »òÕß ; ·Ö¸î
+  # É¨ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ # Ö§ï¿½ï¿½Í³ï¿½ï¿½ï¿½ * ï¿½ï¿½ï¿½ï¿½ ; ï¿½Ö¸ï¿½
   # type-enums-package: com.fengwenyi.mybatis_plus_example.enums
   global-config:
-    #Ë¢ÐÂmapper µ÷ÊÔÉñÆ÷
+    #Ë¢ï¿½ï¿½mapper ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     db-config:
-      #Ö÷¼üÀàÐÍ  0:"Êý¾Ý¿âID×ÔÔö", 1:"ÓÃ»§ÊäÈëID",2:"È«¾ÖÎ¨Ò»ID (Êý×ÖÀàÐÍÎ¨Ò»ID)", 3:"È«¾ÖÎ¨Ò»ID UUID";
+      #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  0:"ï¿½ï¿½ï¿½Ý¿ï¿½IDï¿½ï¿½ï¿½ï¿½", 1:"ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ID",2:"È«ï¿½ï¿½Î¨Ò»ID (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ID)", 3:"È«ï¿½ï¿½Î¨Ò»ID UUID";
       id-type: ID_WORKER
-      #×Ö¶Î²ßÂÔ 0:"ºöÂÔÅÐ¶Ï",1:"·Ç NULL ÅÐ¶Ï"),2:"·Ç¿ÕÅÐ¶Ï"
+      #ï¿½Ö¶Î²ï¿½ï¿½ï¿½ 0:"ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½",1:"ï¿½ï¿½ NULL ï¿½Ð¶ï¿½"),2:"ï¿½Ç¿ï¿½ï¿½Ð¶ï¿½"
       field-strategy: NOT_EMPTY
-      #ÍÕ·åÏÂ»®Ïß×ª»»
+      #ï¿½Õ·ï¿½ï¿½Â»ï¿½ï¿½ï¿½×ªï¿½ï¿½
       #column-underline: true
-      #Êý¾Ý¿â´óÐ´ÏÂ»®Ïß×ª»»
+      #ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð´ï¿½Â»ï¿½ï¿½ï¿½×ªï¿½ï¿½
       #capital-mode: true
-      #Âß¼­É¾³ýÅäÖÃ
+      #ï¿½ß¼ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
       logic-delete-value: 1
       logic-not-delete-value: 0
 #      db-type: mysql
     refresh: true
-      #×Ô¶¨ÒåÌî³ä²ßÂÔ½Ó¿ÚÊµÏÖ
+      #ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½Ó¿ï¿½Êµï¿½ï¿½
       #meta-object-handler: com.baomidou.springboot.xxx
-    #×Ô¶¨ÒåSQL×¢ÈëÆ÷
+    #ï¿½Ô¶ï¿½ï¿½ï¿½SQL×¢ï¿½ï¿½ï¿½ï¿½
     #sql-injector: com.baomidou.springboot.xxx
   configuration:
     map-underscore-to-camel-case: true
