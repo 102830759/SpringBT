@@ -1,5 +1,6 @@
 package com.hyzx.restful.config;
 
+import com.alibaba.fastjson.JSON;
 import com.hyzx.restful.api.R;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;
@@ -35,11 +36,16 @@ public class UnifiedReturnConfig {
         @Override
         public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
 
-            if (body instanceof R) {
-                return body;
-            }
+            if (body instanceof String) {
+                String msg = (String) body;
 
-            return R.ok().put("date", body);
+                // 因为在controller层中返回的是String类型，这边如果换成R的话，会导致StringMessageConverter方法类型转换异常，所以这边将对象转成字符串
+                return JSON.toJSONString(R.ok().put("data", msg));
+            } else if (body instanceof R) {
+                return body;
+            } else {
+                return R.ok().put("data", body);
+            }
         }
     }
 

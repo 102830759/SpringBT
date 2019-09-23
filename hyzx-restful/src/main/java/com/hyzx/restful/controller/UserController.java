@@ -1,6 +1,5 @@
 package com.hyzx.restful.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.hyzx.restful.dto.UserPageDto;
 import com.hyzx.restful.entity.User;
@@ -8,13 +7,17 @@ import com.hyzx.restful.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * @author huyue
  * @date 2019/8/28 17:15
  */
 @Api(value = "UserController", description = "用户")
+@Validated
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -30,7 +33,7 @@ public class UserController {
 
     @ApiOperation("分页查询")
     @PostMapping("/page/query")
-    public PageInfo<User> pageQuery(@RequestBody UserPageDto dto) {
+    public PageInfo<User> pageQuery(@RequestBody @Valid UserPageDto dto) {
         return userService.pageQuery(dto);
     }
 }

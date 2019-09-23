@@ -5,35 +5,23 @@ spring:
       url: jdbc:postgresql://192.168.3.129:5432/smartdb
       username: smartdb
       password: ztjz@2018
-
 #mybatis
 mybatis-plus:
   # xml
   mapper-locations: classpath:mybatis/mapper/*.xml
-  # ʵ��ɨ�裬���package�ö��Ż��߷ֺŷָ�
+  # 实体
   type-aliases-package: com.hyzx.restful.entity
-  # ɨ��ö���� # ֧��ͳ��� * ���� ; �ָ�
-  # type-enums-package: com.fengwenyi.mybatis_plus_example.enums
   global-config:
-    #ˢ��mapper ��������
     db-config:
-      #��������  0:"���ݿ�ID����", 1:"�û�����ID",2:"ȫ��ΨһID (��������ΨһID)", 3:"ȫ��ΨһID UUID";
       id-type: ID_WORKER
-      #�ֶβ��� 0:"�����ж�",1:"�� NULL �ж�"),2:"�ǿ��ж�"
-      field-strategy: NOT_EMPTY
-      #�շ��»���ת��
-      #column-underline: true
-      #���ݿ��д�»���ת��
-      #capital-mode: true
-      #�߼�ɾ������
       logic-delete-value: 1
       logic-not-delete-value: 0
-#      db-type: mysql
-    refresh: true
-      #�Զ��������Խӿ�ʵ��
-      #meta-object-handler: com.baomidou.springboot.xxx
-    #�Զ���SQLע����
-    #sql-injector: com.baomidou.springboot.xxx
+    banner: true
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+    auto-mapping-behavior: full
+    default-executor-type: reuse
