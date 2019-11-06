@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -13,8 +15,10 @@ import java.util.Date;
  * @author huyue
  * @date 2019/8/28 17:16
  */
+@Accessors(chain = true)
 @Getter
 @Setter
+@RequiredArgsConstructor(staticName = "of")
 @TableName(value = "t_sec_user")
 public class User {
     /**
