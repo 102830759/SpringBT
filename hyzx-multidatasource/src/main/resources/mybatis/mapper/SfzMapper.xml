@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzx.multidatasource.mapper.SfzMapper">
+
+
+    <select id="query" parameterType="com.hyzx.multidatasource.pojo.SfzQueryDto"
+            resultType="com.hyzx.multidatasource.pojo.SfzRankResultDto">
+
+        select distinct
+        info.uid as id,
+        info.name ,
+        info.ptx,
+        info.pty,
+        sum(case when  enter.id is null then 0 else 1 end ) as in_num,
+        sum(case when e.id is null then 0 else 1 end) as out_num
+        from
+        dwd_tfc_opt_sta_vvl_sfz_info as info
+        left join dwd_tfc_opt_sta_vvl_sfz_clt_enter_rt enter on info.uid = enter.facility_id
+        left join dwd_tfc_opt_sta_vvl_sfz_clt_exit_rt e on info.uid = e.exit_facility_id
+        <where>
+            <if test="xzqh!=null and xzqh.size()>0">
+                and enter.area_code in
+                <foreach collection="xzqh" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                and e.area_code in
+                <foreach collection="xzqh" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by
+        info.uid ,info.name,
+        info.ptx,
+        info.pty
+        order by
+        in_num desc,
+        out_num desc
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="getTotal" resultType="java.lang.Long">
+        select count(*) from (
+        select distinct
+        info.uid as id,
+        info.name ,
+        info.ptx,
+        info.pty,
+        sum(case when  enter.id is null then 0 else 1 end ) as in_num,
+        sum(case when e.id is null then 0 else 1 end) as out_num
+        from
+        dwd_tfc_opt_sta_vvl_sfz_info as info
+        left join dwd_tfc_opt_sta_vvl_sfz_clt_enter_rt enter on info.uid = enter.facility_id
+        left join dwd_tfc_opt_sta_vvl_sfz_clt_exit_rt e on info.uid = e.exit_facility_id
+        <where>
+            <if test="xzqh!=null and xzqh.size()>0">
+                and enter.area_code in
+                <foreach collection="xzqh" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                and e.area_code in
+                <foreach collection="xzqh" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by
+        info.uid ,info.name,
+        info.ptx,
+        info.pty) s
+    </select>
+</mapper>

@@ -9,6 +9,7 @@
         <module name="zxing" />
         <module name="SpringBT" />
         <module name="demo" />
+        <module name="hyzx-multidatasource" />
         <module name="features" />
         <module name="hyzx-easypoi" />
         <module name="point" />
@@ -28,6 +29,7 @@
       <module name="features" options="-parameters" />
       <module name="hyzx-easypoi" options="-parameters" />
       <module name="hyzx-features8" options="-parameters" />
+      <module name="hyzx-multidatasource" options="-parameters" />
       <module name="hyzx-netty" options="-parameters" />
       <module name="hyzx-restful" options="-parameters" />
       <module name="point" options="-parameters" />

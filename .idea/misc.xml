@@ -19,6 +19,7 @@
         <option value="$PROJECT_DIR$/hyzx-restful/pom.xml" />
         <option value="$PROJECT_DIR$/hyzx-features8/pom.xml" />
         <option value="$PROJECT_DIR$/hyzx-netty/pom.xml" />
+        <option value="$PROJECT_DIR$/hyzx-multidatasource/pom.xml" />
       </list>
     </option>
   </component>

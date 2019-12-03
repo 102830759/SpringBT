@@ -1,3 +1,4 @@
+/*
 package com.gt.point;
 
 import org.junit.Test;
@@ -46,3 +47,4 @@ public class PointApplicationTests {
         generator.generate(doc, out, new HashMap());
     }
 }
+*/

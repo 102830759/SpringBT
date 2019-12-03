@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    db1:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://150.129.138.35:12536/gps_hisdata?useSSL=false
+      username: root
+      password: Ztjz@QWE!@#123
+    db2:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://39.104.133.39:8880/db_gisdb
+      username: db_gisdb
+      password: db_gisdb
+
+# ���ﲻ������mybatis��xmlλ�ã���mybatis������Դ�������н�������
+#mybatis:
+#  mapper-locations:
+#    - classpath:mapper/db1/*.xml
+#    - classpath:mapper/db2/*.xml
+
